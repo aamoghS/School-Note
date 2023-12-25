@@ -85,28 +85,28 @@
 
   <!-- Previous content -->
 
-  <h2>Subtitle: General Trees and Binary Tree</h2>
+  <h2>General Trees and Binary Tree</h2>
   <p>The general trees are the ones with one root, then parents, and leaves. A binary tree is each node with at most two children, such as the left and right child. When a node only has one child in a binary tree, it is either the right or left.</p>
 
-  <h2>Subtitle: Recursive Definition of Trees</h2>
+  <h2>Recursive Definition of Trees</h2>
   <p>A general tree is empty or consists of a finite set of nodes T. One node ‘r’ is distinguished from others called the root. T –{r} is partitioned into subsets, which is a general tree.</p>
 
-  <h2>Subtitle: Recursive Definition of Binary Tree</h2>
+  <h2>Recursive Definition of Binary Tree</h2>
   <p>A binary tree is empty or consists of a root plus a left subtree and a right subtree.</p>
 
-  <h2>Title: Complete Binary Tree</h2>
+  <h2>Complete Binary Tree</h2>
   <p>Trees in data structure vary in size. A complete binary tree gives optimal balance to the "bushiness" of a binary tree. A binary tree is complete if each level has a complete complement of nodes, and nodes are filled from the left. Complete or near-complete trees are desirable as they support efficient searching, insertions, and removals.</p>
 
-  <h2>Title: Full Binary Trees</h2>
+  <h2>Full Binary Trees</h2>
   <p>A full binary tree contains the maximum number of nodes for its height. Each node is either an interior node with two non-empty children or a leaf. Leaves in a full binary tree are greater than the number of interior nodes. A full binary tree has the minimum height necessary to accommodate a given number of nodes, making them fully balanced. Fully balanced trees can accommodate 2^d - 1 nodes. There can be 2n nodes in n levels. The height of n nodes is log₂(n).</p>
 
-  <h2>Title: Heaps</h2>
+  <h2>Heaps</h2>
   <p>Heaps in a binary tree where each node is less than or equal to both of its children. Constraints on the order of nodes are the heap property. The smallest item is the root node, while the largest is in the leaves. The arrangement of data in heaps supports efficient sorting called heap sort and implements priority queues.</p>
 
-  <h2>Title: Expression Trees</h2>
+  <h2>Expression Trees</h2>
   <p>To process expressions is to build a data structure called a parse tree.</p>
 
-  <h2>Title: Binary Search Trees</h2>
+  <h2>Binary Search Trees</h2>
   <p>A call tree for a binary tree can reduce the search space by one half when the array is sorted. The efficiency of search depends on the shape of the tree. Everything depends on how the data come into the tree and how it's sorted.</p>
 
 </body>
@@ -139,23 +139,23 @@
 <body>
 
   <!-- Previous content -->
-
-  <h2>Subtitle: Binary Tree Traversal</h2>
+<h1>19.2 Linked Implementation of Binary Trees</h1>
+  <h2>Binary Tree Traversal</h2>
   <p>There are 4 types of traversal for binary trees: preorder, inorder, postorder, and level order. Each type of traversal follows a particular path and direction.</p>
 
-  <h3>Subtitle: Preorder Traversal</h3>
+  <h3>Preorder Traversal</h3>
   <p>Visits the root node then traverses the left subtree and right subtree.</p>
 
-  <h3>Subtitle: Inorder Traversal</h3>
+  <h3>Inorder Traversal</h3>
   <p>Inorder traversal algorithm traverses the left subtree, visits the root node, and traverses the right subtree.</p>
 
-  <h3>Subtitle: Postorder Traversal</h3>
+  <h3>Postorder Traversal</h3>
   <p>Postorder traversal algorithm traverses the left subtree, then the right subtree, and visits the root node.</p>
 
-  <h3>Subtitle: Level Order Traversal</h3>
+  <h3>Level Order Traversal</h3>
   <p>Level order visits the nodes at each level from left to right.</p>
 
-  <h3>Subtitle: Conclusion</h3>
+  <h3>Conclusion</h3>
   <p>Preorder, inorder, and postorder traversals of an expression tree can be used to generate representations of expressions, respectively.</p>
 
 </body>
@@ -193,8 +193,8 @@
 <body>
 
   <!-- Previous content -->
-
-  <h2>Subtitle: Linked Implementation of Binary Trees</h2>
+<h1>19.3 Linked Implementation of Binary Trees</h1>
+  
   <p>Two implementations of binary trees use arrays and linked structures.</p>
 
   <p>The interface for a binary tree includes methods needed to implement sorted sets and maps. The element type should implement comparable. Search trees also support different traversal methods, which are coded in BSTPT.</p>
@@ -250,15 +250,15 @@
 
   <!-- Previous content -->
 
-  <h2>Title: The Class LinkedBSTPT</h2>
+  <h2>The Class LinkedBSTPT</h2>
   <p>Linked implementation of a binary search tree has external pointers at the root node. Each node contains an element and links to the left and right subtrees.</p>
   <p>BSPST is generic and is implemented in LinkedBSPST.</p>
 
-  <h2>Title: Inserting an Item into a Binary Search Tree</h2>
+  <h2>Inserting an Item into a Binary Search Tree</h2>
   <p>The add method inserts an object into the proper place in a binary search tree. The method implements sorted sets and maps while replacing duplicate items with new ones and returning the old ones. An item's proper place will either be the root node or the leaf node to the left of the item's natural successor or to the right of the item's natural predecessor. It does this by using compareTo.</p>
   <p>All items must implement the Comparable interface. The add method uses a loop to advance until the correct pointer is found.</p>
 
-  <h2>Title: Searching a Binary Search Tree</h2>
+  <h2>Searching a Binary Search Tree</h2>
   <p>The contains method returns the node value if the object is in the tree; otherwise, it gives null. A recursive strategy takes advantage of the nodes.</p>
 
 </body>
@@ -297,7 +297,7 @@
 
   <!-- Previous content -->
 
-  <h2>Title: Traversals and the Iterator</h2>
+  <h2>Traversals and the Iterator</h2>
   <p>Each traversal can use a recursive strategy and implement a pair of methods which builds and returns a list of items accumulated.</p>
 
   <h3>Inorder Traversal</h3>
@@ -306,12 +306,12 @@
     <li>The public method <strong>inorderTraverse</strong> returns a list of items accumulated from an inorder traversal of the tree.</li>
   </ol>
 
-  <h3>Title: Level-Order Traversal</h3>
+  <h3>Level-Order Traversal</h3>
   <p>The algorithm for level-order starts at level 0. It will visit each node from left to right then repeat for the next level until all nodes are visited. A convenient way to schedule nodes to be visited is on a queue.</p>
   <p>Top-level public method <strong>levelorderTraverse</strong> creates a queue and a list; the queue is for scheduling and the list is to return to the client. The method places the root at the front of the queue and passes collections to the helper method levelorderTraverse.</p>
   <p>The recursive pattern for level-order traversal removes a node for processing in the queue and then adds the left and right subtrees to the queue before the recursive call. The order in subtrees being enqueued determines the order for processing as it moves across the levels of the tree.</p>
 
-  <h3>Title: Iterator</h3>
+  <h3>Iterator</h3>
   <p>Clients using a binary search tree to implement sorted sets and maps prefer to have an iterator method that allows them to visit items in alphabetical order.</p>
   <p>The iterator method for a binary search tree returns an iterator on a list that results from an inorder traversal. The remove method of the iterator has no effect on the tree, as the iterator is the backing store of the tree, not the list.</p>
   <p>As the <strong>LinkedBSPST</strong> class implements the <strong>Iterable</strong> interface, the program can use an enhanced for loop for the inorder traversal of the binary search tree.</p>
@@ -352,10 +352,10 @@
 
   <!-- Previous content -->
 
-  <h2>Title: toString</h2>
+  <h2>toString</h2>
   <p>The toString method can implement any traversal. A convenient way is to “rotate” the tree between interior nodes.</p>
 
-  <h2>Title: Removing an Item from a Binary Search Tree</h2>
+  <h2>Removing an Item from a Binary Search Tree</h2>
   <ol>
     <li>Save a pointer to the root node.</li>
     <li>Attempt to locate the node to be removed, its parent, and its parent's pointer to this node.</li>
@@ -409,11 +409,11 @@
 
   <!-- Previous content -->
 
-  <h2>Title: Complexity Analysis of Binary Search Trees</h2>
+  <h2> Complexity Analysis of Binary Search Trees</h2>
   <p>Binary Search Trees replicate O(logn). Optimal behavior depends on the shape of the tree. A bushy tree, one that is close to complete, supports close to logarithmic search. In the worst case, when items are inserted in alphabetical order, the shape is linear.</p>
   <p>The runtime of insertion also depends on the shape of the tree.</p>
 
-  <h2>Title: 19.4 An Array Implementation of Binary Trees</h2>
+  <h2>19.4 An Array Implementation of Binary Trees</h2>
   <p>An array-based implementation of a tree is possible but difficult to define and only in special situations.</p>
   <p>Mapping stacks, queues, and lists to an array is linear, and each element has an obvious predecessor and successor. Trees are hierarchical and resist being flattened.</p>
 
@@ -462,7 +462,7 @@
 
   <!-- Previous content -->
 
-  <h2>Title: 19.5 Implementing Heaps</h2>
+  <h2>19.5 Implementing Heaps</h2>
   <p>The Heap interface should recognize messages to return its size, add items, remove, and peek at items.</p>
 
   <h3>Methods in HeapPT</h3>
@@ -512,7 +512,7 @@
 
   <!-- Previous content -->
 
-  <h2>Title: Implementing add and pop</h2>
+  <h2>Implementing add and pop</h2>
   <p>The add and pop operations are also defined in <code>ArrayHeapPT</code>.</p>
   <p>Array implementation maintains the structure of the heap within an array.</p>
 
