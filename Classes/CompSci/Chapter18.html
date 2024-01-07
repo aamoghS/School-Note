@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+    }
+  </style>
+  <title>18.1</title>
+</head>
+<body>
+
+  <h2>Subtitle 18.1 The Set and Map Prototypes</h2>
+
+  <p>We work with prototypes of sets and maps to examine essential features of different implementations.</p>
+
+  <p>Prototypes are nongeneric collections with elements made of <u>Object</u> type.</p>
+
+  <h3>The Set Prototype interface is called SetPT</h3>
+
+  <p><strong>SetPT methods:</strong></p>
+  <ul>
+    <li>boolean add(Object obj) - if the object is not in the set then add the object to the set, increases set size by one, and returns true else false</li>
+    <li>void clear() - makes the set empty</li>
+    <li>boolean contains(Object obj) - returns true if the object is in the set, false otherwise</li>
+    <li>boolean isEmpty() - returns true if the set contains no object, else false</li>
+  </ul>
+
+  <h3>The map prototype is MapPT</h3>
+
+  <p><strong>MapPT methods:</strong></p>
+  <ul>
+    <li>boolean containsKey(Object key) - returns true if the map contains the indicated key else false</li>
+    <li>void clear() - make the map empty</li>
+    <li>boolean containsValue(Object values) - returns true if the map contains at least one instance of the indicated value else false</li>
+    <li>Object get(Object key) - return the value associated with the indicated key if the key is in the map or null otherwise</li>
+    <li>boolean isEmpty() - Return true if the map is empty or false otherwise</li>
+    <li>SetPT keySet() - return a set view of the keys in the map</li>
+    <li>Object put(Object key, Object values) - if the key is already in the map, replace the previous value with the new value and return the previous value; otherwise, add the key and the associated value to the map and return null</li>
+    <li>Object remove(Object Key) - if the key is in the map, remove the key-value pair from the map and transfer values else return null</li>
+    <li>Int size() - returns the number of key-value pairs currently in the map</li>
+    <li>Collection values() - returns a collection view of the values in the map</li>
+  </ul>
+
+  <p><strong>ListSetPT and HashSetPT</strong> are implementations of set.</p>
+  <p><strong>ListMapPT and HashMapPT</strong> are implementations of Map.</p>
+
+  <h2>Subtitle 18.2 List Implementation of Sets and Maps</h2>
+
+  <h3>Subtitle: Set</h3>
+
+  <p>List implementation of sets is simple, a set contains a list. As these elements' order does not matter, they can be added to the end, which is an O(1) operation with a linked List.</p>
+
+  <p>We choose an instance of the class LinkedList to contain the set's elements. Most of ListSetPT methods call corresponding List Methods to accomplish their tasks. The only exception is ListSetPT method add, which must prevent duplicate objects from being inserted into the set.</p>
+
+  <h3>Subtitle: Maps</h3>
+
+  <p>Unlike sets, the entries in a map consist of two parts: key and value.</p>
+
+  <p>Insertion, accesses, and removal are based on the key; the method in a list implementation and map cannot consist of calls to corresponding list methods.</p>
+
+  <p>ListMapPT class deals with this problem by parallel lists of keys and values.</p>
+
+  <p>Get, put, and remove rely on the same pattern.</p>
+
+  <p>If using an instance of ArrayList for the list, then access the value in the list. Once it is located, the key in the list. This runtime is O(1).</p>
+
+  <h3>Complexity Analysis of the List Implementation of Sets and Maps</h3>
+
+  <p>The list implementation of set requires very little programming. A quick injection of major accessing methods is linear.</p>
+
+  <p>The list implementation of maps does...</p>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+    }
+  </style>
+  <title>18.3 Overview of Hashing</title>
+</head>
+<body>
+
+  <h2>Subtitle: Hash Function</h2>
+
+  <p>Hashing is a technique of storing and retrieving data where each item is associated with a hash code.</p>
+
+  <p>The same hash function runs with O(1) when inserted, retrieved, or removed.</p>
+
+  <p>Hash code to locate the index in the array is hashCode % array.length; and this runs in constant time.</p>
+
+  <p>Java already includes a method to generate a hash code for any object - <code>hashCode()</code>.</p>
+
+  <p>It might return a large number that is negative, so typically we use <code>Math.abs()</code>.</p>
+
+  <p>A collision occurs when two runs of hashing happen when the second run increases the number of items and has the same location.</p>
+
+  <p>Collisions do not go away when the size of the array increases.</p>
+
+  <h2>Title: Linear Collision Processing</h2>
+
+  <p>For insertions, the simplest way to resolve collision is to search the array from the collision spot.</p>
+
+  <p>When the search reaches the last position, the search wraps around and continues to the first position. If the array does not become full, then the array cell is null in this process.</p>
+
+  <p>Retrievals and removals work in a similar manner, but we search for the item that matches the target item.</p>
+
+  <p>Linear collision processing is prone to clustering. The situation occurs when the items cause a collision are relocated to the same region in the array. This leads to other collisions and relocated items.</p>
+
+  <h2>Title: Quadratic Collision Processing</h2>
+
+  <p>To avoid clustering, we can advance the search for an empty position at a distance away from the collision point.</p>
+
+  <p>Quadratic collision processing accomplishes this by incrementing the current index by the square of a constant on each runtime. If the attempt fails, we increment the constant, a trial and error process.</p>
+
+  <p>The formula is k + c^2 where k is the initial hash code while c is the constant.</p>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+    }
+  </style>
+  <title>Chaining</title>
+</head>
+<body>
+
+  <h2>Chaining</h2>
+
+  <p>In collision processing, chaining, the items are stored in an array of linked lists or chains.</p>
+
+  <p>Each hash code item is located in the bucket or index of the chain in which the item resides.</p>
+
+  <p>The retrieval and removal operations both follow:</p>
+  <ol>
+    <li>Compute the item’s hash code or index in the array</li>
+    <li>Search the linked list at that index for the item</li>
+  </ol>
+
+  <p>If the item is found, then it can be returned or removed.</p>
+
+  <p>To insert an item:</p>
+  <ol>
+    <li>Compute the item's hash code or index in the array</li>
+    <li>If the array cell is empty, create a node with the item and assign the node to the cell</li>
+    <li>Otherwise, a collision occurs. The existing item is the head of the linked list or chain of items at that position. Insert the new item at the head of the list</li>
+  </ol>
+
+  <h2>Load Factors</h2>
+
+  <p>For version hashing methods, there is a load factor and density ratio.</p>
+
+  <p>An array load factor is the result of dividing the number of items by the array capacity.</p>
+
+  <p>For example, let E be 30 items and let A be 100 array cells. The load factor of this is E/A, which is 0.3.</p>
+
+  <p>Load factor increases, meaning the likelihood of collision increases in hashing.</p>
+
+  <h2>Complexity Analysis</h2>
+
+  <h3>Linear Collision Processing</h3>
+
+  <p>The complexity of linear collision processing depends on the load factor along with the tendency of relocated items to cluster.</p>
+
+  <p>In the worst case, the method has to traverse through the entire array before locating the item position, giving it a linear O(N) complexity.</p>
+
+  <p>The average behavior in the search for an item is:</p>
+
+  <p>(1/2) * [ 1 + 1/(1-D)^2], where D is the density ratio / load factor.</p>
+
+  <h3>Quadratic Collision Processing</h3>
+
+  <p>The quadratic method mitigates clustering, where the average performance is better than the linear method.</p>
+
+  <p>The average search complexity is:</p>
+
+  <p>For successful searches: 1 – log e (1-D) – (D -2)</p>
+
+  <p>For unsuccessful searches: 1 / (1-D) – D – log e (1-D)</p>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+    }
+  </style>
+  <title>Chaining</title>
+</head>
+<body>
+
+  <h2>Chaining</h2>
+
+  <p>In collision processing, chaining is the process of storing items in an array of linked lists or chains.</p>
+
+  <p>The process of locating an item consists of two parts:</p>
+  <ol>
+    <li>Computing the index</li>
+    <li>Searching a linked list when a collision occurs</li>
+  </ol>
+
+  <p>The first part has constant time behavior O(1), while the second part has linear behavior O(n).</p>
+
+  <p>If the lists are evenly distributed and the array is large, the second part can be close to constant time as well.</p>
+
+  <p>The best case is each array cell occupied by a length of 1, which is exactly O(1).</p>
+
+  <p>Random insertion results in an even distribution. As the load factor passes 1, the length of the chain has to increase, leading to degraded performance.</p>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+    }
+  </style>
+  <title>18.4 Hashing Implementation of Maps</title>
+</head>
+<body>
+
+  <h2>18.4 Hashing Implementation of Maps</h2>
+
+  <p>Prototype map class uses the bucket/chaining method.</p>
+
+  <p>The implementation maintains an array and represents entries in a manner to allow chaining.</p>
+
+  <p>The array: Three instance variables, table (array), size (the number of entries in the map), and capacity (number of cells in the array).</p>
+
+  <p>Entry is defined by the private inner class Entry. The attributes of the entry are similar to node classes such as key, value, and a pointer to the next entry of the chain.</p>
+
+  <p>The value of capacity is defaulted by a constant, and we define it as 3 to ensure frequent collisions.</p>
+
+  <p>As the same technique is used to locate the position for insertion, retrievals, and removal, we can use it in one method: containKey.</p>
+
+  <p>Client perspective is the method searches for a given key and returns true or false.</p>
+
+  <p>Implementer perspective, the method sets values of some instance variables that can be used for the implementation.</p>
+
+  <p>Variables for accessing entries in HashMapPT:</p>
+  <ul>
+    <li>Entry foundEntry – contains the entry just located or undefined otherwise</li>
+    <li>Entry priorEntry - Contains the entry prior to the one just located or undefined otherwise</li>
+    <li>int index - contains the index of the chain in which the entry was located or undefined otherwise</li>
+  </ul>
+
+  <p>The algorithm for containsKey uses index, foundEntry, and priorEntry during its search.</p>
+
+  <p>If the algorithm hashes an empty cell, then no entry is found, but the index contains the bucket for subsequent insertion of its first entry.</p>
+
+  <p>If the algorithm hashes to a nonempty array, then the algorithm loops down the chain of entries until it finds a matching entry or runs off the chain.</p>
+
+  <p>The algorithm leaves foundEntry and priorEntry set to appropriate values.</p>
+
+  <p>The method "get" calls containsKey and returns the value contained in foundEntry if the key is found else null.</p>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+    }
+  </style>
+  <title>18.4 Hashing Implementation of Maps</title>
+</head>
+<body>
+
+  <h2>18.4 Hashing Implementation of Maps</h2>
+
+  <p>Prototype map class uses the bucket/chaining method.</p>
+
+  <p>The implementation maintains an array and represents entries in a manner to allow chaining.</p>
+
+  <p>The array: Three instance variables, table (array), size (the number of entries in the map), and capacity (number of cells in the array).</p>
+
+  <p>Entry is defined by the private inner class Entry. The attributes of the entry are similar to node classes such as key, value, and a pointer to the next entry of the chain.</p>
+
+  <p>The value of capacity is defaulted by a constant, and we define it as 3 to ensure frequent collisions.</p>
+
+  <p>As the same technique is used to locate the position for insertion, retrievals, and removal, we can use it in one method: containKey.</p>
+
+  <p>Client perspective is the method searches for a given key and returns true or false.</p>
+
+  <p>Implementer perspective, the method sets values of some instance variables that can be used for the implementation.</p>
+
+  <p>Variables for accessing entries in HashMapPT:</p>
+  <ul>
+    <li>Entry foundEntry – contains the entry just located or undefined otherwise</li>
+    <li>Entry priorEntry - Contains the entry prior to the one just located or undefined otherwise</li>
+    <li>int index - contains the index of the chain in which the entry was located or undefined otherwise</li>
+  </ul>
+
+  <p>The algorithm for containsKey uses index, foundEntry, and priorEntry during its search.</p>
+
+  <p>If the algorithm hashes an empty cell, then no entry is found, but the index contains the bucket for subsequent insertion of its first entry.</p>
+
+  <p>If the algorithm hashes to a nonempty array, then the algorithm loops down the chain of entries until it finds a matching entry or runs off the chain.</p>
+
+  <p>The algorithm leaves foundEntry and priorEntry set to appropriate values.</p>
+
+  <p>The method "get" calls containsKey and returns the value contained in foundEntry if the key is found else null.</p>
+
+  <p>The method "put" calls containsKey to determine whether or not an entry exists at the target key’s position. If the entry is found, "put" replaces its value with a new value and returns the old value.</p>
+
+  <p>Else "put" will:</p>
+  <ol>
+    <li>Create a new entry whose next pointer is the entry at the head of the chain</li>
+    <li>Sets the head of the chain to the new entry</li>
+    <li>Increments the size</li>
+    <li>Returns null</li>
+  </ol>
+
+  <p>Remove is similar, remove uses the variable priorEntry when the entry to be removed is after the head of the chain.</p>
+
+  <p>Method "toString" returns the string representation of each key/value but also the current capacity and load factor of the map.</p>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+    }
+  </style>
+  <title>18.5 Hashing Implementation of Sets</title>
+</head>
+<body>
+
+  <h2>18.5 Hashing Implementation of Sets</h2>
+
+  <p>The design of HashSetPT is similar to HashMapPT.</p>
+
+  <p>They both use the same hashing strategy, the instance variables are the same and each object of the class entry consists of an item and a pointer to the next entry in the chain.</p>
+
+  <p>The design method for HashSetPT is virtually the same as the corresponding methods in HashMapPT</p>
+
+  <p>The differences are:</p>
+  <ol>
+    <li>Method contains searches for an item in an entry instead of a key.</li>
+    <li>Method add inserts an item only if it is not already present in the set.</li>
+    <li>The methods add and remove return a boolean value to indicate the success or failure of an addition or removal.</li>
+    <li>There is a single iterator method instead of two methods that return key and values.</li>
+  </ol>
+
+</body>
+</html>
